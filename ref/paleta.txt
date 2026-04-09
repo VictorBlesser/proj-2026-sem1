@@ -1,0 +1,10 @@
+Cor Primária (Azul) - #0d3b66
+Azul II (Cor Secundária) - #1d5fa7
+Azul III (Cor de Destaque) - #4da3ff
+Branco - #fff
+Cinza (Tom Base para Cinza) - #6c757d
+Preto - #0f172a
+Cor de Sucesso (Verde) - #2ec4b6
+Cor de Aviso (Laranja) - #ffc107
+Cor de Erro (Amarelo) - #ff8c42
+Cor de Info (Roxo) - #6f42c1
