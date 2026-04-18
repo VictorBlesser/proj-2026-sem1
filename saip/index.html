@@ -19,14 +19,16 @@
     </style>
   </head>
   <body>
+    <script type="text/javascript" src="interfaces.js"></script>
+    <script type="text/javascript" src="ISO_A.js"></script>
     <script type="text/javascript" src="program.js"></script>
     <script type="text/javascript">
-     const TipoA = new A();
+     const TipoA = new A0();
 
      const { div, p } = van.tags;
 
      const ContainerPrincipal = () => div({ class: "m-0 p-0 d-flex justify-content-center align-items-center min-vh-100", style: "background-color: lightgray;" },
-        p(TipoA.children)
+        p(TipoA.tipos)
      );
 
      van.add(document.body, ContainerPrincipal());
