@@ -1,5 +1,5 @@
 class A extends ISO {
-  static tamanhoMax = 1000;
+  static tamanhoMax = 999949;
   
   constructor() {
     super();
@@ -19,7 +19,7 @@ class A extends ISO {
   }
   
   mostrarTamanhoFolha() {
-    return `${this.tamanhoMax} x ${this.tamanhoMax} mm`;
+    return `${this.largura} x ${this.comprimento} mm`;
   }
 
   retornar_tipos() {
@@ -39,7 +39,7 @@ class A0 extends A {
 
     this.largura = 841; // Largura do A0 em mm
     this.comprimento = 1189; // Comprimento do A0 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A0 em mm2
+    this.tamanhoMax = 999949; // Tamanho máximo do A0 em mm2
     A0.#instance = this;
   }
 
@@ -64,7 +64,7 @@ class A1 extends A {
 
     this.largura = 594; // Largura do A1 em mm
     this.comprimento = 841; // Comprimento do A1 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A1 em mm2
+    this.tamanhoMax = 49954; // Tamanho máximo do A1 em mm2
     A1.#instance = this;
   }
 
@@ -89,7 +89,7 @@ class A2 extends A {
 
     this.largura = 420; // Largura do A2 em mm
     this.comprimento = 594; // Comprimento do A2 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A2 em mm2
+    this.tamanhoMax = 249480; // Tamanho máximo do A2 em mm2
     A2.#instance = this;
   }
 
@@ -114,7 +114,7 @@ class A3 extends A {
 
     this.largura = 297; // Largura do A3 em mm
     this.comprimento = 420; // Comprimento do A3 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A3 em mm2
+    this.tamanhoMax = 124740; // Tamanho máximo do A3 em mm2
     A3.#instance = this;
   }
 
@@ -138,7 +138,7 @@ class A4 extends A {
 
     this.largura = 210; // Largura do A4 em mm
     this.comprimento = 297; // Comprimento do A4 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A4 em mm2
+    this.tamanhoMax = 62370; // Tamanho máximo do A4 em mm2
     A4.#instance = this;
   }
 
@@ -162,7 +162,7 @@ class A5 extends A {
 
     this.largura = 148; // Largura do A5 em mm
     this.comprimento = 210; // Comprimento do A5 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A5 em mm2
+    this.tamanhoMax = 31080; // Tamanho máximo do A5 em mm2
     A5.#instance = this;
   }
 
@@ -186,7 +186,7 @@ class A6 extends A {
 
     this.largura = 105; // Largura do A6 em mm
     this.comprimento = 148; // Comprimento do A6 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A6 em mm2
+    this.tamanhoMax = 15540; // Tamanho máximo do A6 em mm2
     A6.#instance = this;
   }
 
@@ -210,7 +210,7 @@ class A7 extends A {
 
     this.largura = 74; // Largura do A7 em mm
     this.comprimento = 105; // Comprimento do A7 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A7 em mm2
+    this.tamanhoMax = 7770; // Tamanho máximo do A7 em mm2
     A7.#instance = this;
   }
 
@@ -232,9 +232,9 @@ class A8 extends A {
       return A8.#instance;
     }
 
-    this.largura = 74; // Largura do A8 em mm
-    this.comprimento = 105; // Comprimento do A8 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A8 em mm2
+    this.largura = 52; // Largura do A8 em mm
+    this.comprimento = 74; // Comprimento do A8 em mm
+    this.tamanhoMax = 3848; // Tamanho máximo do A8 em mm2
     A8.#instance = this;
   }
 
@@ -258,7 +258,7 @@ class A9 extends A {
 
     this.largura = 37; // Largura do A9 em mm
     this.comprimento = 52; // Comprimento do A9 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A9 em mm2
+    this.tamanhoMax = 1924; // Tamanho máximo do A9 em mm2
     A9.#instance = this;
   }
 
@@ -282,7 +282,7 @@ class A10 extends A {
 
     this.largura = 26; // Largura do A10 em mm
     this.comprimento = 37; // Comprimento do A10 em mm
-    this.tamanhoMax = this.largura * this.comprimento; // Tamanho máximo do A10 em mm2
+    this.tamanhoMax = 962; // Tamanho máximo do A10 em mm2
     A10.#instance = this;
   }
 
