@@ -7,6 +7,10 @@ Aqui conterá a página do nosso projeto, aqui terá uma descrição sobre o có
 # Limitações Conhecidas
 Considerações de implementação/Informações extras...
 
+# Testando
+Esse projeto implementa testes, especificamente para o saip (o programa). Usamos **Mocha** e **doctest-js** sobre o **Node.js** para fazer os testes automatizados em formato de **JSDoc** usando a sintaxe de módulos do ES6. Para fazer uso deles, `clone` o código localmente e rode:
+`npm install && npm test`, ou ainda pode se usar `pnpm` ou outros gerenciadores de pacotes compatíveis apenas trocando o termo `npm` pelo nome de outro que se queria utilizar.
+
 # Contribuições
 Para contribuir com o projeto:
 - Faça um fork do projeto (https://github.com/Firespindash/proj-2026-sem1/fork) e `clone` o projeto localmente (`git clone https://github.com/seuUsuario/proj-2026-sem1`);
