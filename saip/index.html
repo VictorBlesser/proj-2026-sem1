@@ -23,16 +23,84 @@
          height: 100vh;
      }
 
-     .btn:hover, .btn:active {
+     label {
+         margin: 0 4px 5px 4px;
+     }
+
+     input::placeholder {
+         font-style: italic;
+         font-weight: 500;
+         color: #6c757d;
+     }
+
+     input, label, textarea {
+         font-size: 1.2rem;
+     }
+
+     .txt-black {
+         color: #0f172a;
+     }
+
+     .txt-gray {
+         color: #6c757d;
+     }
+
+     .bdr-black {
+         border-color: #0f172a;
+     }
+
+     .bg-accent {
+         background-color: #4da3ff !important;
+     }
+
+     .bg-danger {
+         background-color: #ff8c42 !important;
+     }
+
+     .btn-inicial:focus-visible, .btn-inicial:hover, .btn-inicial:active {
          background-color: #4da3ff;
          border-color: #4da3ff;
+         box-shadow: none;
+     }
+
+     .btn:focus-visible, .btn:hover, .btn:active, .btn.active, .btn.show {
+         background-color: transparent;
+         border-color: transparent;
+         outline: none;
+         box-shadow: none;
      }
 
      .btn-inicial {
          width: 30rem;
          height: 13.5rem;
          font-size: 3.6rem;
-         background-color: #4da3ff;
+     }
+
+     .btn-pedido {
+         width: 9.6rem;
+         height: 4.8rem;
+         font-size: 2.4rem;
+     }
+
+     .form-select {
+         font-size: 1.6rem;
+         height: 2.7rem;
+         outline: none;
+     }
+     
+     .form-control:focus, .form-select:focus, .form-select:hover, .form-select:active {
+         background-color: transparent !important;
+         border-color: inherit;
+         outline: none !important;
+         box-shadow: none !important;
+     }
+
+     .form-group {
+         margin-bottom: 5rem;
+     }
+
+     .p-2-4 {
+         padding: 2px 4px;
      }
     </style>
   </head>
@@ -47,19 +115,108 @@
      
      const TipoA = fabrica.criarPapel("A0");
 
-     const { div, h1, button, p } = van.tags;
+     const { div, h1, button, img, form, label, select, input, datalist, option } = van.tags;
 
-     const ContainerPrincipal = () => div({ class: "m-0 p-0 d-flex flex-column justify-content-center align-items-center min-vh-100", style: "background-color: lightgray;" },
-       div(
-         div(
-           h1({ class: "text-center", style: "margin-top: 0px; font-size: 7.2rem;" }, "SAIP")
-         )
-       ),
-       div({ class: "d-flex justify-content-between", style: "width: calc((27rem * 2) + 7.2rem)" },
-         button({ class: "btn btn-inicial rounded-0 text-center text-white" }, "PADRÕES CUSTOMIZADOS"),
-         p(TipoA.tipos)
-       )
+     const closed = van.state(false);
+
+     let telaPedidoRef, telaCustom, pedido;
+     
+     const tipoSelecionado = van.state('A0');
+     const quantidade = van.state('');
+     const gramatura = van.state('75g');
+     const cor = van.state("#6c757d");
+
+     const opcoes = TipoA.tipos;
+     const sugestoesGramatura = [70, 75, 80, 85, 90, 95, 100, 105];
+
+     const logo = () => div({ class: "navbar-brand", style: "margin-top: 6.2rem; margin-left: 9.6rem; width: 12.8rem; height: 12.8rem;" }, img({ src: "../img/logo.png", alt: "Logo da Blue Paperworks", height: 128 }));
+
+     const botaoVoltar = ref => {
+       if (ref == "TelaPedidos") {
+         return () => button({ class: "btn txt-black m-0 p-0", style: "font-weight: bold; font-size: 2.4rem;", onclick: () => telaPedidoRef.remove() }, "< Voltar")
+       }
+       else if (ref == "TelaCustom") {
+         return () => button({ class: "btn txt-black m-0 p-0", style: "font-weight: bold; font-size: 2.4rem;", onclick: () => telaCustomRef.remove() }, "< Voltar")
+       }
+     }
+     
+     const header = (titulo, el = '') => div({ class: "position-fixed top-0 start-0 m-0 p-0 d-flex justify-content-between", style: "width: calc(50% + 7.2rem); height: calc(20rem + 7.2rem);" },
+       logo(),
+       botaoVoltar(el),
+       h1({ class: "p-0", style: "margin-top: 20rem; font-size: 7.2rem;" }, titulo)
      );
+
+     const enviarParada = () => {
+       console.log("Parando a produção")
+     }
+
+     const enviarPedido = infoString => {
+       console.log(infoString)
+     }
+
+     const validarPedido = (e) => {
+       let quantidadeInt, gramaturaInt;
+       e.preventDefault();
+
+       if (quantidade.val.length < 7) {
+         quantidadeInt = parseInt(quantidade.val);
+       }
+       if (gramatura.val.length < 5) {
+         if (/[a-z]$/.test(gramatura.val)) gramatura.val = gramatura.val.slice(0, -1);
+         gramaturaInt = parseInt(gramatura.val);
+       }
+       
+       if (/^[a-zA-Z0-9_]+$/.test(tipoSelecionado.val)) {
+         if (quantidadeInt > 0 && quantidadeInt <= 100000) {
+           if (gramaturaInt > 0 && gramaturaInt < 1000) {
+             if (/^#[a-f0-9]+$/.test(cor.val)) {
+               pedido = fabrica.criarPapel(tipoSelecionado.val);
+               
+               enviarPedido(`API POST / ${tipoSelecionado.val}: ${pedido.mostrarTamanhoFolha()}, ${gramatura.val} gsm, ${quantidade.val} un., ${cor.val}`)
+             }
+           }
+         }
+       }
+     }
+
+     const TelaPedidos = div({ class: "position-fixed top-0 start-0 m-0 p-0 w-100 h-100", style: "background-color: white; z-index: 1000;" },
+       header("Pedidos", "TelaPedidos"),
+       form({ onsubmit: validarPedido, class: "position-absolute", style: "top: calc(20rem + 7.2rem + 10rem); margin-left: calc(50% - 27rem + 7rem); width: 27rem;" },
+         div({ class: "form-group" },
+           label({ class: "form-group-text bg-transparent border-0 p-0", for: "combobox-tipo" }, "Tipo:"),
+           select({ id: "combobox-tipo", class: "form-select border-black text-center txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 6rem;" },
+             opcoes.map(opt => option({ value: opt }, opt))
+           ),
+         ),
+         div({ class: "form-group" },
+             label({ class: "form-group-text bg-transparent border-0 p-0", for: "input-quantidade" }, "Quantidade:"),
+             input({ id: "input-quantidade", required: true, class: "form-control txt-black bdr-black rounded-0 p-2-4", placeholder: "Um número de 1-1000...", type: "numeric", onkeydown: e => { if (e.key == 'Enter') e.preventDefault(); }, onchange: e => quantidade.val = e.target.value })
+         ),
+         div({ class: "form-group" },
+             label({ class: "form-group-text bg-transparent border-0 p-0", for: "combobox-ed-gramatura" }, "Gramatura:"),
+             input({ id: "combobox-ed-gramatura", class: "form-control form-select txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 6rem; height: 2.7rem;", type: "numeric", list: "padroes-comuns-gsm", value: () => gramatura.val, onkeydown: e => { if (e.key == 'Enter') e.preventDefault(); }, onchange: e => gramatura.val = e.target.value }),
+             datalist({ id: "padroes-comuns-gsm" },
+               sugestoesGramatura.map(opt => option({ value: opt}))
+             )
+         ),
+         div ({ class: "form-group" },
+              label({ class: "form-group-text bg-transparent border-0 p-0", for: "seletor-cor" }, "Cor de impressão:"),
+              input({ id: "seletor-cor", class: "form-control bdr-black", style: "width: 5.2rem; height: 5.2rem; padding: 1px;", type: "color", value: cor, oninput: e => cor.val = e.target.value })
+         ),
+         div({ class: "d-flex justify-content-between", style: "width: 27rem; height: 4.8rem; margin-top: 10rem;" },
+           button({ class: "btn btn-pedido btn-danger bg-danger border-0 p-0 rounded-0 text-center text-white", onclick: enviarParada }, "PARAR"),
+           button({ class: "btn btn-pedido bg-accent border-0 rounded-0 p-0 text-center text-white", type: "submit" }, "ENVIAR")
+         )
+       )
+     )
+     
+     const ContainerPrincipal = () => div({ class: "m-0 p-0 d-flex flex-column justify-content-center align-items-center min-vh-100", style: "background-color: lightgray;" },
+       header("SAIP"),
+       div({ class: "d-flex justify-content-between", style: "width: calc((30rem * 2) + 7.2rem)", onclick: () => { telaPedidoRef = TelaPedidos; van.add(document.body, TelaPedidos); }},
+         button({ class: "btn btn-inicial bg-accent rounded-0 border-0 text-center text-white", style: "margin-right: 7.2rem;" }, "PADRÕES CUSTOMIZADOS"),
+         button({ class: "btn btn-inicial bg-accent rounded-0 border-0 text-center text-white" }, "GERIR PEDIDOS")
+     )
+   )
 
      van.add(document.body, ContainerPrincipal());
     </script>
