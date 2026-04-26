@@ -27,6 +27,10 @@
          margin: 0 4px 5px 4px;
      }
 
+     h4 {
+         font-size: 2.4rem;
+     }
+
      input::placeholder {
          font-style: italic;
          font-weight: 500;
@@ -58,11 +62,35 @@
      }
 
      .bg-success {
-         background-color: #1f867c !important;
+         background-color: #2ec4b6 !important;
      }
 
      .txt-success {
-         color: #2ec4b6;
+         color: #1f867c;
+     }
+
+     .bg-info {
+         background-color: #6f42c1 !important;
+     }
+
+     .txt-info {
+         color: #6f42c1;
+     }
+
+     .bg-warning {
+         background-color: #ffc107 !important;
+     }
+
+     .txt-warning {
+         color: #ffc107;
+     }
+
+     .bg-error {
+         background-color: #ff8c42 !important;
+     }
+
+     .txt-error {
+         color: #ff8c42;
      }
 
      .btn-inicial:focus-visible, .btn-inicial:hover, .btn-inicial:active {
@@ -117,6 +145,7 @@
          right: 0;
          width: 27rem;
          height: fit-content;
+         font-size: 1.6rem;
          margin: 0 auto;
          background-color: #e9eaec;
          overflow: hidden;
@@ -139,7 +168,7 @@
 
      const closed = van.state(false);
 
-     let telaPedidoRef, telaCustom, pedido, popupRef;
+     let telaPedidoRef, telaCustom, pedido, popupRef, popupTimeout;
      
      const tipoSelecionado = van.state('A0');
      const quantidade = van.state('');
@@ -171,52 +200,89 @@
      const popupNotif = (info, type = 'success') => {
        let headingIcon, hintColor;
 
-       console.log(info)
+       if (popupRef) {
+         popupRef.remove();
+         clearTimeout(popupTimeout);
+       }
        
        if (type == 'success') {
          headingIcon = "Pedido Enviado";
          hintColor = "bg-success"
          textColor = "txt-success"
        }
+       else if (type == 'aviso') {
+         headingIcon = "Aviso:";
+         hintColor = "bg-warning";
+         textColor = "txt-warning";
+       }
+       else if (type == 'erro') {
+         headingIcon = "Erro: Algo deu errado";
+         hintColor = "bg-error";
+         textColor = "txt-error";
+       }
+       else {
+         headingIcon = "i";
+         hintColor = "bg-info";
+         textColor = "txt-info";
+       }
        
        popupRef = div({ class: "position-fixed p-0 alert fade show popup bdr-black", role: "alert"},
          div({ class: `w-100 ${hintColor}`, style: "height: 4px;" }),
-         h4({ class: `alert-heading ${textColor}` }, headingIcon),
-         p(info)
+                      h4({ class: `alert-heading ${textColor}`, style: "padding-top: 8px; padding-left: 4px; padding-bottom: 1px;" }, headingIcon),
+         p({ style: "padding-left: 4px;" }, info)
        )
-     }
 
-     const enviarParada = () => {
-       console.log("Parando a produção")
-     }
-
-     const enviarPedido = infoString => {
-       popupNotif(infoString);
-       console.log(popupRef);
        van.add(document.body, popupRef);
-       setTimeout(() => { if (popupRef) { popupRef.remove(); } }, 10000)
-       console.log(infoString)
+       popupTimeout = setTimeout(() => { popupRef.remove(); }, 10000);
+     }
+
+     const registrar = mensagem => console.log(`[${Date.now()}]: ${mensagem}`);
+     
+     const enviarParada = () => {
+       popupNotif("Parando a produção", "aviso");
+       registrar('API POST / { "cmd": [ { "op": "STOP" } ] }');
+     }
+
+     let infoString
+     const enviarPedido = infoCmd => {
+       infoString = JSON.parse(infoCmd.slice(11)).cmd[0];
+       
+       popupNotif(`Enviando Pedido: ${infoString.quantidade} un. de ${infoString.tipo} com ${infoString.gramatura} gsm e cor ${infoString.cor}`);
+       registrar(infoCmd)
+     }
+
+     const validar = expression => {
+       if (expression) {
+         return true
+       }
+       else {
+         popupNotif("Algum campo está com informação inválida, em caso de dúvidas consulte o manual.", "aviso");
+         registrar("Erro: Alguma das variáveis está com valor incorreto");
+       }
      }
 
      const validarPedido = (e) => {
        let quantidadeInt, gramaturaInt;
        e.preventDefault();
 
-       if (quantidade.val.length < 7) {
+       if (validar(quantidade.val.length < 7 && /^\d+$/.test(quantidade.val))) {
          quantidadeInt = parseInt(quantidade.val);
-       }
-       if (gramatura.val.length < 5) {
-         if (/[a-z]$/.test(gramatura.val)) gramatura.val = gramatura.val.slice(0, -1);
-         gramaturaInt = parseInt(gramatura.val);
-       }
-       
-       if (/^[a-zA-Z0-9_]+$/.test(tipoSelecionado.val)) {
-         if (quantidadeInt > 0 && quantidadeInt <= 100000) {
-           if (gramaturaInt > 0 && gramaturaInt < 1000) {
-             if (/^#[a-f0-9]+$/.test(cor.val)) {
+
+         if (validar(gramatura.val.length < 5)) {
+
+           gramaturaInt = gramatura.val
+           
+           if (/g$/i.test(gramaturaInt)) {
+             gramaturaInt = gramaturaInt.slice(0, -1);
+           }
+           
+           if (validar(!/[a-zA-Z]$/.test(gramaturaInt))) {
+             gramaturaInt = parseInt(gramaturaInt);
+
+             if (validar(/^[a-zA-Z0-9_]+$/.test(tipoSelecionado.val) && quantidadeInt > 0 && quantidadeInt <= 100000 && gramaturaInt > 0 && gramaturaInt < 1000 && /^#[a-f0-9]+$/.test(cor.val))) {
                pedido = fabrica.criarPapel(tipoSelecionado.val);
                
-               enviarPedido(`API POST / ${tipoSelecionado.val}: ${pedido.mostrarTamanhoFolha()}, ${gramatura.val} gsm, ${quantidade.val} un., ${cor.val}`)
+               enviarPedido(`API POST / { "cmd": [ { "tipo": "${tipoSelecionado.val}", "formato": "${pedido.mostrarTamanhoFolha()}", "gramatura": "${gramaturaInt}", "quantidade": "${quantidadeInt}", "cor": "${cor.val}" } ] }`)
              }
            }
          }
@@ -228,7 +294,7 @@
        form({ onsubmit: validarPedido, class: "position-absolute", style: "top: calc(20rem + 7.2rem + 10rem); margin-left: calc(50% - 27rem + 7rem); width: 27rem;" },
          div({ class: "form-group" },
            label({ class: "form-group-text bg-transparent border-0 p-0", for: "combobox-tipo" }, "Tipo:"),
-           select({ id: "combobox-tipo", class: "form-select border-black text-center txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 6rem;" },
+           select({ id: "combobox-tipo", class: "form-select border-black text-center txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 6rem;", oninput: e => tipoSelecionado.val = e.target.value },
              opcoes.map(opt => option({ value: opt }, opt))
            ),
          ),
@@ -238,7 +304,7 @@
          ),
          div({ class: "form-group" },
              label({ class: "form-group-text bg-transparent border-0 p-0", for: "combobox-ed-gramatura" }, "Gramatura:"),
-             input({ id: "combobox-ed-gramatura", class: "form-control form-select txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 6rem; height: 2.7rem;", type: "numeric", list: "padroes-comuns-gsm", value: () => gramatura.val, onkeydown: e => { if (e.key == 'Enter') e.preventDefault(); }, onchange: e => gramatura.val = e.target.value }),
+             input({ id: "combobox-ed-gramatura", class: "form-control form-select txt-black bdr-black rounded-0 p-2-4 lh-1", style: "width: 7.2rem; height: 2.7rem;", type: "numeric", list: "padroes-comuns-gsm", maxlength: 4, value: () => gramatura.val, onkeydown: e => { if (e.key == 'Enter') e.preventDefault(); }, onchange: e => gramatura.val = e.target.value }),
              datalist({ id: "padroes-comuns-gsm" },
                sugestoesGramatura.map(opt => option({ value: opt}))
              )

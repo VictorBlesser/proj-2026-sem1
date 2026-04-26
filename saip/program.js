@@ -35,8 +35,14 @@ class iFactory {
             return new A5();
           case 'A6':
             return new A6();
-          
-          // ...
+          case 'A7':
+            return new A7();
+          case 'A8':
+            return new A8();
+          case 'A9':
+            return new A9();
+          case 'A10':
+            return new A10();
             
           default:
             throw new Error("iFactory: O tipo passado está inválido e se parece com A.");
