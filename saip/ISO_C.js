@@ -84,15 +84,12 @@ class C1 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(648, 917, 594216);
 
     if (C1.#instance) {
       return C1.#instance;
     }
 
-    this.largura = 648; // Largura do C1 em mm
-    this.comprimento = 917; // Comprimento do C1 em mm
-    this.tamanhoMax = 594216; // Tamanho máximo do C1 em mm2
     C1.#instance = this;
   }
 
@@ -109,15 +106,12 @@ class C2 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(458, 648, 296784);
 
     if (C2.#instance) {
       return C2.#instance;
     }
 
-    this.largura = 458; // Largura do C2 em mm
-    this.comprimento = 648; // Comprimento do C2 em mm
-    this.tamanhoMax = 296784; // Tamanho máximo do C2 em mm2
     C2.#instance = this;
   }
 
@@ -134,15 +128,12 @@ class C3 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(324, 458, 14839);
 
     if (C3.#instance) {
       return C3.#instance;
     }
 
-    this.largura = 324; // Largura do C3 em mm
-    this.comprimento = 458; // Comprimento do C3 em mm
-    this.tamanhoMax = 14839; // Tamanho máximo do C3 em mm2
     C3.#instance = this;
   }
 
@@ -159,15 +150,12 @@ class C4 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(229, 324, 74196);
 
     if (C4.#instance) {
       return C4.#instance;
     }
 
-    this.largura = 229; // Largura do C4 em mm
-    this.comprimento = 324; // Comprimento do C4 em mm
-    this.tamanhoMax = 74196; // Tamanho máximo do C4 em mm2
     C4.#instance = this;
   }
 
@@ -184,15 +172,12 @@ class C5 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(162, 229, 37098);
 
     if (C5.#instance) {
       return C5.#instance;
     }
 
-    this.largura = 162; // Largura do C5 em mm
-    this.comprimento = 229; // Comprimento do C5 em mm
-    this.tamanhoMax = 37098; // Tamanho máximo do C5 em mm2
     C5.#instance = this;
   }
 
@@ -209,15 +194,12 @@ class C6 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(114, 162, 18468);
 
     if (C6.#instance) {
       return C6.#instance;
     }
 
-    this.largura = 114; // Largura do C6 em mm
-    this.comprimento = 162; // Comprimento do C6 em mm
-    this.tamanhoMax = 18468; // Tamanho máximo do C6 em mm2
     C6.#instance = this;
   }
 
@@ -233,15 +215,12 @@ class C7 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(81, 114, 9234);
 
     if (C7.#instance) {
       return C7.#instance;
     }
 
-    this.largura = 81; // Largura do C7 em mm
-    this.comprimento = 114; // Comprimento do C7 em mm
-    this.tamanhoMax = 9234; // Tamanho máximo do C7 em mm2
     C7.#instance = this;
   }
 
@@ -257,15 +236,12 @@ class C8 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(57, 81, 4617);
 
     if (C8.#instance) {
       return C8.#instance;
     }
 
-    this.largura = 57; // Largura do C8 em mm
-    this.comprimento = 81; // Comprimento do C8 em mm
-    this.tamanhoMax = 4617; // Tamanho máximo do C8 em mm2
     C8.#instance = this;
   }
 
@@ -282,15 +258,12 @@ class C9 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(40, 57, 2280);
 
     if (C9.#instance) {
       return C9.#instance;
     }
 
-    this.largura = 40; // Largura do C9 em mm
-    this.comprimento = 57; // Comprimento do C9 em mm
-    this.tamanhoMax = 2280; // Tamanho máximo do C9 em mm2
     C9.#instance = this;
   }
 
@@ -307,15 +280,12 @@ class C10 extends C {
   static #instance;
 
   constructor() {
-    super();
+    super(28, 40, 1120);
 
     if (C10.#instance) {
       return C10.#instance;
     }
 
-    this.largura = 28; // Largura do C10 em mm
-    this.comprimento = 40; // Comprimento do C10 em mm
-    this.tamanhoMax = 1120; // Tamanho máximo do C10 em mm2
     C10.#instance = this;
   }
 
