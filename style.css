@@ -254,6 +254,6 @@ p {
         top: calc(21% + var(--base-text-size)*12 + var(--base-distance));
     }
     #texto-chamada {
-        top: calc(20% + var(--base-text-size)*12 + var(--base-text-size)*6 + var(--base-distance)*2);
+        top: calc(25% + var(--base-text-size)*12 + var(--base-text-size)*6 + var(--base-distance)*2);
     }
 }
