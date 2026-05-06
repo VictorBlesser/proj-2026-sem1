@@ -149,13 +149,7 @@ p {
 }
 @media (min-width: 1920px) {
     :root {
-        --base-text-size: .9rem;
-    }
-    #principal {
-        font-size: 9rem;
-    }
-    #subtitulo {
-        font-size: 5rem;
+        --base-text-size: 1.2rem;
     }
 }
 @media (min-width: 1200px) {
@@ -200,6 +194,12 @@ p {
     .logo img {
         opacity: 0;
     }
+    #principal {
+        font-size: 9rem;
+    }
+    #subtitulo {
+        font-size: 5rem;
+    }
 }
 @media (max-width: 768px) {
     html {
@@ -241,5 +241,19 @@ p {
     }
     #rodape {
         top: calc(75vh + 50%*2 + var(--base-distance)*12);
+    }
+}
+@media (max-height: 768px) {
+    :root {
+        --base-text-size: .6rem;
+    }
+    #principal {
+        top: 25%;
+    }
+    #subtitulo {
+        top: calc(21% + var(--base-text-size)*12 + var(--base-distance));
+    }
+    #texto-chamada {
+        top: calc(20% + var(--base-text-size)*12 + var(--base-text-size)*6 + var(--base-distance)*2);
     }
 }
