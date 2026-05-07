@@ -1,5 +1,5 @@
 // Descomente apenas para os testes
-import { A0 } from './ISO_A.js';
+//import { A0 } from './ISO_A.js';
 
 class iFactory {
   criarPapel(tipo) {
@@ -118,14 +118,30 @@ class iFactory {
 
 const registrar = mensagem => console.log(`[${Date.now()}]: ${mensagem}`);
 
+const validarCor = string => {
+  const teste = new Option().style;
+  teste.color = string;
+  return typeof teste.color === "string" && teste.color.length > 0;
+}
+
 const validarSpecs = json => {
-       try {
-         JSON.parse(json);
-         return true;
-       }
-       catch (e) {
+  try {
+      let objetoTeste = JSON.parse(json);
+      if (Number.isInteger(objetoTeste.gramatura)) {
+        if (validarCor(objetoTeste.cor)) {
+          if (Array.isArray(objetoTeste.tipos)) {
+            if (objetoTeste.tipos.every(objeto => Object.prototype.toString.call(objeto) === '[object Object]')) {
+              if (Object.keys(objetoTeste).length) {
+                return true;
+              }
+            }
+          }
+        }
+      }
+    }
+    catch (e) {
          return false;
-       }
+    }
 }
 
 const listaPadroesCustom = JSON.parse(localStorage.getItem("padroesCustomizados") || "[]");
@@ -133,4 +149,4 @@ const listaPadroesCustom = JSON.parse(localStorage.getItem("padroesCustomizados"
 const guardarJson = arr => localStorage.setItem("padroesCustomizados", JSON.stringify(arr))
 
 // Descomente apenas para os testes
-export { iFactory }
+//export { iFactory }

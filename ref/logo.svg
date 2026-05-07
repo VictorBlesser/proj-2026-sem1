@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="128"
+   height="128"
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="2.3953242"
+     inkscape:cx="64.709403"
+     inkscape:cy="35.694542"
+     inkscape:window-width="1920"
+     inkscape:window-height="1022"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="text1"
+       style="font-size:72px;font-family:'Noto Sans';-inkscape-font-specification:'Noto Sans';fill:#1d5fa7;stroke-linecap:round;stroke-linejoin:round"
+       aria-label="BP">
+      <path
+         style="font-style:italic;font-weight:500;font-stretch:semi-condensed;-inkscape-font-specification:'Noto Sans Medium Italic Semi-Condensed';fill:#0d3b66"
+         d="m 26.055986,89.704025 10.872,-51.408 h 12.456 q 6.336,0 10.224,2.664 3.888,2.664 3.888,8.496 0,5.04 -2.88,8.64 -2.808,3.6 -7.992,4.752 v 0.288 q 3.24,0.936 5.184,3.528 2.016,2.52 2.016,6.408 0,5.184 -2.376,8.928 -2.304,3.672 -6.48,5.688 -4.176,2.016 -9.72,2.016 z m 19.728,-29.808 q 4.392,0 7.2,-2.448 2.808,-2.52 2.808,-6.84 0,-2.952 -1.8,-4.464 -1.728,-1.584 -5.544,-1.584 h -5.544 l -3.24,15.336 z m -4.32,23.544 q 5.256,0 7.992,-2.88 2.736,-2.88 2.736,-7.56 0,-3.24 -1.872,-5.112 -1.8,-1.944 -5.76,-1.944 h -6.12 l -3.744,17.496 z"
+         id="path1" />
+      <path
+         style="font-style:italic;font-weight:500;font-stretch:semi-condensed;-inkscape-font-specification:'Noto Sans Medium Italic Semi-Condensed'"
+         d="m 65.367952,89.704025 10.872,-51.408 h 11.232 q 7.632,0 11.016,3.6 3.455998,3.528 3.455998,9.432 0,8.64 -5.471998,13.752 -5.4,5.04 -15.192,5.04 h -4.392 l -4.176,19.584 z m 16.488,-25.848 q 5.832,0 9.144,-3.096 3.384,-3.168 3.384,-9 0,-3.672 -2.016,-5.328 -1.944,-1.728 -5.832,-1.728 h -4.248 l -4.104,19.152 z"
+         id="path2" />
+    </g>
+  </g>
+</svg>

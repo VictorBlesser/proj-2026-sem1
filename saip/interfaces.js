@@ -60,10 +60,6 @@ class ANSI extends iPapel {
       throw new Error("Não instancie ANSI diretamente.");
     }
 
-    this.largura = largura;
-    this.comprimento = comprimento;
-    this.cor = cor;
-    this.gramatura = gramatura;
     this.tamanhoMax = tamanhoMax;
   }
   // Racional para mostrar em mm de pol e transformar em string 
@@ -77,18 +73,6 @@ class ANSI extends iPapel {
 
     return `${(this.largura * this.proporcao).toFixed(this.precisao)} x ${(this.comprimento * this.proporcao).toFixed(this.precisao)} mm`;
   }
-  // Racional para mostrar em mm de pol e transformar em string 
-  mostrarTamanhoFolha() {
-    const mm = this.convPolEmMM();
-    return `${mm.larguraMM.toFixed(1)} x ${mm.comprimentoMM.toFixed(1)} mm`;
-  }
-  // proporcao de 1 in = 25.4 mm
-  convPolEmMM() {
-    return {
-      larguraMM: this.largura * 25.4,
-      comprimentoMM: this.comprimento * 25.4
-  };
- }
 }
 
 // Descomente apenas para os testes com doctest-js

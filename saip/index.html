@@ -146,7 +146,7 @@
            if (validar(!/[a-z]$/i.test(gramaturaInt))) {
              gramaturaInt = parseInt(gramaturaInt);
 
-             if (validar(/^[a-z0-9_]+$/i.test(tipoSelecionado.val) && quantidadeInt > 0 && quantidadeInt <= 100000 && gramaturaInt > 0 && gramaturaInt < 1000 && /^#[a-f0-9]+$/.test(cor.val))) {
+             if (validar(/^[a-z0-9_]+$/i.test(tipoSelecionado.val) && quantidadeInt > 0 && quantidadeInt <= 100000 && gramaturaInt > 0 && gramaturaInt < 1000 && validarCor(cor.val))) {
                let formato;
                
                if (padroesCustom.includes(tipoSelecionado.val)) {
@@ -212,12 +212,12 @@
          let stringJson = `{ "id": "${nomePadrao.val}", ${specsNovoPadrao.val} }`;
          
          if(validar(validarSpecs(stringJson))) {
-           if (validar(!padroesCustomIds.includes(nomePadrao.val))) {
+           if (validar(padroesCustomIds.includes(nomePadrao.val) !== true)) {
              guardarPadrao(stringJson);
              popupNotif(`Adicionando o padrão customizado "${nomePadrao.val}".`, "info");
              registrar(`API POST /add ${stringJson}`);
            }
-               else {
+           else {
              registrar("Erro: O nome do novo padrão já existe no sistema, o nome de um padrão não pode ser igual ao de outro pré-existente")
            }
          }

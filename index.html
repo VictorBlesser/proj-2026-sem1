@@ -14,12 +14,13 @@
   <body>
     <header>
       <nav>
-        <a href="#"><img class="logo" src="img/logo.png" alt="Logo da Blue Paperworks" href="#"></a>
-        <button onclick="document.getElementsByTagName('ul')[0].classList.toggle('ativo');">
+        <a href="#"><div class="logo"><img src="ref/logo.svg" alt="Logo da Blue Paperworks"></div></a>
+        <button id="hamburger" onclick="document.getElementsByTagName('ul')[0].classList.toggle('ativo');">
           <label class="hamburger">
             <span>-</span>
             <span>-</span>
-          </label></button>
+          </label>
+        </button>
         <ul>
           <li><a href="">Manual</a></li>
           <li><a href="#sobre">Sobre</a></li>
@@ -32,7 +33,7 @@
       <h1 id="principal">Saip</h1>
       <h2 id="subtitulo">Sistema de Automação para indústrias de Papel</h2>
       <p id="texto-chamada">Um sistema prático para auxiliar no compliance de sua empresa, automação da produção, e aumento de eficiência da sua fábrica. Seguimos as normas técnicas ABNT.</p>
-      <button id="botao-cta" onclick="window.location.href='https://github.com/Firespindash/proj-2026-sem1'">Usar agora</button>
+      <button id="botao-cta" onclick="window.location.href='https://firespindash.github.io/proj-2026-sem1/saip/'">Usar agora</button>
       <section id="sobre">
         <h2>Sobre o SAIP</h2>
         <p>A solução SAIP é um sistema inteligente desenvolvido para otimizar e automatizar processos e auxiliar no compliance das indústrias de papel. A plataforma permite configurar pedidos personalizados conforme padrões técnicos customizáveis, vindo com suporte por padrão às especificações ABNT, baseada em ISO, e ANSI, definindo formatos, gramaturas, cores e quantidades por lote, usando comandos via API para controlar as máquinas. Com suporte a gerar relatórios estratégicos e alertas preventivos, o sistema ajuda na conformidade com normas técnicas, aumentando a produtividade, reduzing falhas operacionais e melhorando automações já existentes.</p>
@@ -44,7 +45,7 @@
     </main>
     <footer>
       <div id="rodape">
-        <p>&copy; 2026 Blue Papeworks. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Blue Paperworks. Todos os direitos reservados.</p>
         <p>Contato: lucas.adriel.lima@uni9.edu.br</p>
       </div>
     </footer>
