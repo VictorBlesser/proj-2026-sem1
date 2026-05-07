@@ -11,8 +11,9 @@ body {
 }
 
 h1 {
-    top: 20rem;
+    top: 20%;
     font-weight: normal;
+    width: fit-content;
 }
 
 label {
@@ -118,6 +119,7 @@ input, label, textarea {
     font-size: 1.6rem;
     height: 2.7rem;
     outline: none;
+    text-align: start !important;
 }
 
 .form-control:focus, .form-select:focus, .form-select:hover, .form-select:active {
@@ -176,7 +178,6 @@ h1, .popup {
     }
 
     .form-select {
-        text-align: start !important;
         width: 40% !important;
         height: 10% !important;
     }
