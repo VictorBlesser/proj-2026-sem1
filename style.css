@@ -139,13 +139,22 @@ p {
     position: absolute;
     top: calc(100vh + 50%*2 + (var(--base-distance)*8) + 12.8rem);
     width: calc(100% - var(--base-margin)*2);
-    height: 7.2rem;
     padding-left: var(--base-margin);
     padding-right: var(--base-margin);
     backdrop-filter: contrast(125%) saturate(0) grayscale(100%) brightness(110%) blur(20px);
+}
+#rodape, #conteudo-do-manual footer {
+    height: 7.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+#conteudo-do-manual footer {
+    background-color: #1d5fa7;
+    color: white;
+}
+#conteudo-do-manual footer p {
+    font-size: 1.2rem;
 }
 #hamburger {
     border: none;
@@ -185,7 +194,7 @@ p {
     position: fixed;
     top: var(--top-distance);
     left: var(--base-margin);
-    filter: saturate(180%);
+    filter: saturate(220%);
     z-index: -1;
 }
 #conteudo-do-manual {
@@ -194,12 +203,30 @@ p {
     width: 65%;
     height: 100%;
 }
+#conteudo-do-manual section {
+    height: 100%;
+}
+#conteudo-do-manual h1,
+#conteudo-do-manual h2 {
+    margin: 10% auto;
+    text-align: center;
+}
+#conteudo-do-manual p,
+#conteudo-do-manual pre {
+    margin: 0 var(--base-margin);
+}
+#conteudo-do-manual span {
+    font-weight: bold;
+}
 #conteudo-do-manual pre {
     font-size: 1.6rem;
     font-style: italic;
-    color: #6c757d;
+    color: #1d5fa7;
+    text-wrap: auto;
 }
-
+#informacoes-de-contato p {
+    margin-bottom: 15%;
+}
 @media (min-width: 1920px) {
     :root {
         --base-text-size: 1.2rem;
